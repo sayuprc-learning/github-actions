@@ -3,7 +3,8 @@ name: Docker Build
 on:
   workflow_call:
     outputs:
-      tar: ${{ jobs.docker-build.outputs.tar }}
+      tar:
+        value: ${{ jobs.docker-build.outputs.tar }}
 
 jobs:
   docker-build:
