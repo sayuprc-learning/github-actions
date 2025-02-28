@@ -3,13 +3,16 @@ name: Docker Build
 on:
   workflow_call:
     outputs:
-      tar: ${{ jobs.image-tag.outputs.TAR }}
+      tar: ${{ jobs.docker-build.outputs.tar }}
 
 jobs:
   docker-build:
     name: Docker Build
 
     runs-on: ubuntu-latest
+
+    outputs:
+      tar: ${{ steps.image-tag.outputs.TAR }}
 
     steps:
       - name: Checkout the code
