@@ -48,5 +48,6 @@ jobs:
           docker load -i ${{ steps.image-tag.outputs.CACHE_PATH }}/${{ steps.image-tag.outputs.PHP_IMAGE }}:${{ steps.image-tag.outputs.PHP_TAG }}.tar
 
       - name: Run
-        run:
+        run: |
           docker compose run --rm php php -v
+          docker compose run --rm php php artisan -v
