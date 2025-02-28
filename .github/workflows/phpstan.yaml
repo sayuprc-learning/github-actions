@@ -3,7 +3,12 @@ name: PHPStan
 on: [pull_request, push]
 
 jobs:
+  setup:
+    uses: ./.github/workflows/setup-php.yaml
+
   analyse:
+    needs: setup
+
     name: PHPStan
 
     runs-on: ubuntu-latest
@@ -14,40 +19,18 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: Image Tag
-        id: image-tag
-        run: |
-          PHP_IMAGE=$(make php-image)
-          PHP_TAG=$(make php-tag)
-          CACHE_PATH="/tmp/docker_cache"
-          LOCK_HASH="${{ hashFiles('./src/composer.lock') }}"
-          DOCKERFILE_HASH="${{ hashFiles('./Dockerfile.php.ci') }}"
-          echo "CACHE_PATH=${CACHE_PATH}" >> $GITHUB_OUTPUT
-          echo "LOCK_HASH=${LOCK_HASH}" >> $GITHUB_OUTPUT
-          echo "DOCKERFILE_HASH=${DOCKERFILE_HASH}" >> $GITHUB_OUTPUT
-          echo "PHP_IMAGE=${PHP_IMAGE}" >> $GITHUB_OUTPUT
-          echo "PHP_TAG=${PHP_TAG}" >> $GITHUB_OUTPUT
-
       - name: Cache
         id: cache
         uses: actions/cache@v4
         with:
-          path: ${{ steps.image-tag.outputs.CACHE_PATH }}
-          key: ${{ steps.image-tag.outputs.CACHE_PATH }}
-
-      - name: Build
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          make build-ci
-          mkdir -p ${{ steps.image-tag.outputs.CACHE_PATH }}
-          docker save ${{ steps.image-tag.outputs.PHP_IMAGE }}:${{ steps.image-tag.outputs.PHP_TAG }} > ${{ steps.image-tag.outputs.CACHE_PATH }}/${{ steps.image-tag.outputs.PHP_IMAGE }}:${{ steps.image-tag.outputs.PHP_TAG }}.tar
+          path: ${{ needs.setup.outputs.path }}
+          key: ${{ needs.setup.outputs.key }}
 
       - name: Load
-        if: steps.cache.outputs.cache-hit == 'true'
         run: |
-          docker load -i ${{ steps.image-tag.outputs.CACHE_PATH }}/${{ steps.image-tag.outputs.PHP_IMAGE }}:${{ steps.image-tag.outputs.PHP_TAG }}.tar
+          docker load -i ${{ needs.setup.outputs.tar }}
 
       - name: Run
         run: |
           docker compose -f compose.ci.yaml run --rm php php -v
-          docker compose -f compose.ci.yaml run --rm php php artisan -v
+          # docker compose -f compose.ci.yaml run --rm php php artisan -v
