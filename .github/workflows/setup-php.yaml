@@ -5,6 +5,10 @@ on:
     outputs:
       tar:
         value: ${{ jobs.docker-build.outputs.tar }}
+      key:
+        value: ${{ jobs.docker-build.outputs.key }}
+      path:
+        value: ${{ jobs.docker-build.outputs.path }}
 
 jobs:
   docker-build:
@@ -14,6 +18,8 @@ jobs:
 
     outputs:
       tar: ${{ steps.image-tag.outputs.TAR }}
+      key: ${{ steps.image-tag.outputs.KEY }}
+      path: ${{ steps.image-tag.outputs.CACHE_PATH }}
 
     steps:
       - name: Checkout the code

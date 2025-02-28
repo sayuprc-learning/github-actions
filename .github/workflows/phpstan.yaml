@@ -19,6 +19,13 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
+      - name: Cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ needs.setup.outputs.path }}
+          key: ${{ needs.setup.outputs.key }}
+
       - name: Load
         run: |
           docker load -i ${{ needs.setup.outputs.tar }}
