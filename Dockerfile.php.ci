@@ -15,12 +15,14 @@ ARG USERNAME=user
 ARG GROUPNAME=user
 
 RUN groupadd -g $GID $GROUPNAME \
-  && useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
-
-USER $USERNAME
+  && useradd -m -s /bin/bash -u $UID -g $GID $USERNAME \
 
 WORKDIR /var/www/html
 
 COPY ./src .
+
+RUN chmod 777 -R storage
+
+USER $USERNAME
 
 RUN composer install -n --prefer-dist
