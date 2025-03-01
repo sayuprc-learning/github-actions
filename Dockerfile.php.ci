@@ -21,6 +21,6 @@ USER $USERNAME
 
 WORKDIR /var/www/html
 
-COPY . .
+COPY ./src .
 
 RUN composer install -n --prefer-dist
