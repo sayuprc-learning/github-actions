@@ -36,6 +36,6 @@ jobs:
 
       - name: Run
         run: |
-          make up
+          docker compose up php -d
           docker compose exec php php -v
           docker compose exec php php artisan -v
