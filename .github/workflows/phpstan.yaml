@@ -40,5 +40,5 @@ jobs:
       - name: Run
         run: |
           docker compose exec php php -v
-          docker compose exec php ls vendor
+          docker compose exec php composer install
           docker compose exec php php artisan -v
