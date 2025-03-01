@@ -21,6 +21,6 @@ USER $USERNAME
 
 WORKDIR /var/www/html
 
-COPY setup.sh /var/www/setup.sh
+COPY . .
 
-CMD ["bash", "/var/www/setup.sh"]
+RUN composer install -n --prefer-dist
