@@ -21,7 +21,8 @@ WORKDIR /var/www/html
 
 COPY ./src .
 
-RUN chmod 777 -R storage
+RUN chmod 777 -R storage \
+  && chmod 777 -R bootstrap/cache
 
 USER $USERNAME
 
