@@ -40,4 +40,5 @@ jobs:
       - name: Run
         run: |
           docker compose exec php php -v
-          docker compose exec php php artisan -v
+          docker compose exec php ls
+          # docker compose exec php php artisan -v
