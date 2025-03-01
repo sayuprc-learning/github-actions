@@ -21,9 +21,7 @@ WORKDIR /var/www/html
 
 COPY ./src .
 
-RUN chmod 777 -R storage \
-  && chmod 777 -R bootstrap/cache
+RUN composer install -n --prefer-dist
 
 USER $USERNAME
 
-RUN composer install -n --prefer-dist
