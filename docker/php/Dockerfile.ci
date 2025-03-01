@@ -11,6 +11,6 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY ./src ./
+COPY setup.sh .
 
-RUN composer install
+CMD ["bash", "setup.sh"]

@@ -36,5 +36,5 @@ jobs:
 
       - name: Run
         run: |
-          docker compose -f compose.ci.yaml run --rm php php -v
-          docker compose -f compose.ci.yaml run --rm php php artisan -v
+          docker compose run --rm php php -v
+          docker compose run --rm php php artisan -v
