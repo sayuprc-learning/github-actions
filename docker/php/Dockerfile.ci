@@ -21,6 +21,6 @@ USER $USERNAME
 
 WORKDIR /var/www/html
 
-COPY setup.sh .
+COPY setup.sh /var/www/setup.sh
 
-CMD ["bash", "setup.sh"]
+CMD ["bash", "/var/www/setup.sh"]
