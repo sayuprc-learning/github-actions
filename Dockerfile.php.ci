@@ -15,7 +15,7 @@ ARG USERNAME=user
 ARG GROUPNAME=user
 
 RUN groupadd -g $GID $GROUPNAME \
-  && useradd -m -s /bin/bash -u $UID -g $GID $USERNAME \
+  && useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
 
 WORKDIR /var/www/html
 
