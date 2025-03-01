@@ -2,8 +2,8 @@
 
 cd /var/www/html
 
-composer install
+composer install -n --prefer-dist
 
-composer dump-autoload
+# composer dump-autoload
 
 php-fpm
