@@ -35,9 +35,16 @@ jobs:
           docker load -i ${{ needs.setup.outputs.tar }}
 
       - name: Start up
-        run: docker compose -f compose.ci.yaml up php -d
+        run: |
+          docker compose up -d php
+          sleep 5
+          ls -l src
+
+# docker compose -f compose.ci.yaml up php -d
 
       - name: Run
         run: |
-          docker compose -f compose.ci.yaml exec php php -v
-          docker compose -f compose.ci.yaml exec php php artisan -v
+          docker compose exec php php -v
+          docker compose exec php php artisan -v
+# docker compose -f compose.ci.yaml exec php php -v
+# docker compose -f compose.ci.yaml exec php php artisan -v
