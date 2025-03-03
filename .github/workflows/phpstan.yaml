@@ -43,7 +43,7 @@ jobs:
 
       - name: Run
         run: |
-          ls -l
+          ls -l src
 # docker compose exec php php -v
 # docker compose exec php php artisan -v
 # docker compose -f compose.ci.yaml exec php php -v
