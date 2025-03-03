@@ -36,8 +36,8 @@ jobs:
 
       - name: Start up
         run: |
-          docker compose up php -d
-          docker compose logs --tail=50 php
+          docker compose up -d php
+          docker compose ps
 
 # docker compose -f compose.ci.yaml up php -d
 
