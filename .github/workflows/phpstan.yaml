@@ -38,6 +38,7 @@ jobs:
         run: |
           # docker compose -f compose.ci.yaml up php -d
           docker compose up php -d
+          docker compose logs --tail=50 php
 
       - name: Run
         run: |
