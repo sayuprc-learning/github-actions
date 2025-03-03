@@ -29,7 +29,7 @@ build: ## Build docker image for dev
 
 .PHONY: build-ci
 build-ci: ## Build docker image for CI
-	docker build -t ${PHP_IMAGE}:${PHP_TAG} -f ./Dockerfile.php.ci . \
+	docker build -t ${PHP_IMAGE}:${PHP_TAG} -f ./docker/php/Dockerfile ./docker/php \
 		--build-arg UID=${UID} \
 		--build-arg GID=${GID} \
 		--build-arg USERNAME=${USERNAME} \

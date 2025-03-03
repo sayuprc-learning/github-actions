@@ -34,7 +34,7 @@ jobs:
           PHP_TAG=$(make php-tag)
           CACHE_PATH="/tmp/docker_cache"
           LOCK_HASH="${{ hashFiles('./src/composer.lock') }}"
-          DOCKERFILE_HASH="${{ hashFiles('./Dockerfile.php.ci') }}"
+          DOCKERFILE_HASH="${{ hashFiles('./docker/phpDockerfile') }}"
           KEY="${DOCKERFILE_HASH}${LOCK_HASH}"
           IMAGE="${PHP_IMAGE}:${PHP_TAG}"
           TAR="${CACHE_PATH}/${IMAGE}"
