@@ -36,13 +36,15 @@ jobs:
 
       - name: Start up
         run: |
-          # docker compose -f compose.ci.yaml up php -d
           docker compose up php -d
           docker compose logs --tail=50 php
 
+# docker compose -f compose.ci.yaml up php -d
+
       - name: Run
         run: |
-          docker compose exec php php -v
-          docker compose exec php php artisan -v
-          # docker compose -f compose.ci.yaml exec php php -v
-          # docker compose -f compose.ci.yaml exec php php artisan -v
+          ls -l
+# docker compose exec php php -v
+# docker compose exec php php artisan -v
+# docker compose -f compose.ci.yaml exec php php -v
+# docker compose -f compose.ci.yaml exec php php artisan -v
