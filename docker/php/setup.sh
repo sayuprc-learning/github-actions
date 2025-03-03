@@ -1,5 +1,5 @@
 #!/bin/bash
 
-composer install
+composer install -n
 
 php-fpm
