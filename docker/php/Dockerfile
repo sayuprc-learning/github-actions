@@ -21,6 +21,6 @@ USER $USERNAME
 
 WORKDIR /var/www/html
 
-COPY setup.sh .
+COPY setup.sh /usr/local/bin/setup.sh
 
-ENTRYPOINT ["bash", "setup.sh"]
+ENTRYPOINT ["bash", "/usr/local/bin/setup.sh"]
