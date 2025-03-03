@@ -36,8 +36,8 @@ jobs:
 
       - name: Start up
         run: |
-          docker compose up -d php
-          docker compose ps
+          docker compose run --rf php composer install
+          ls -l src
 
 # docker compose -f compose.ci.yaml up php -d
 
