@@ -20,3 +20,7 @@ RUN groupadd -g $GID $GROUPNAME \
 USER $USERNAME
 
 WORKDIR /var/www/html
+
+COPY setup.sh /usr/local/bin/setup.sh
+
+ENTRYPOINT ["bash", "/usr/local/bin/setup.sh"]
